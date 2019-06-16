@@ -27,7 +27,23 @@ app.get('/tinh', (req, res) => {
 })
 
 app.post('/tinh', (req, res) =>{
-
+    var resu = 0;
+    var num1 = parseFloat(req.body.num1);
+    var num2 = parseFloat(req.body.num2);
+    if(req.body.pheptinh === '*') {
+        resu = num1 * num2;
+        res.send({result: resu});
+        res.render('index', {number1: num1, number2: num2, result: resu, check3: "checked"});
+    } else if(req.body.pheptinh === '/') {
+        if(num2 === 0){
+            res.send({result: resu});
+            res.render('index', {number1: num1, number2: num2, result: '', check4: "checked", error: "Không được chia cho 0"});
+        }else{
+            resu = num1 / num2;
+            res.send({result: resu});
+            res.render('index', {number1: num1, number2: num2, result: resu, check4: "checked"});
+        }
+    }
 });
 
 // catch 404 and forward to error handler

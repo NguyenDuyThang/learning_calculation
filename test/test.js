@@ -48,7 +48,7 @@ describe('POST /tinh', function() {   it("should return number minus to calculat
 });
 });
 
-//4
+//Phép nhân đúng
 describe('POST /tinh', function() {   it("should return number multiply to calculate", function(done) {    
     request(app)
     .post('/tinh')
@@ -63,7 +63,22 @@ describe('POST /tinh', function() {   it("should return number multiply to calcu
 });
 });
 
-//5
+//Phép nhân sai
+describe('POST /tinh', function() {   it("should return WRONG number multiply to calculate", function(done) {    
+    request(app)
+    .post('/tinh')
+    .type('form')
+    .send({num1 : 5, num2 : 6, pheptinh: '*'})
+    .expect(200)
+    .end((err, res) => {
+        if(res.body.result == 300){
+            done();
+        }
+    });
+});
+});
+
+//Phép chia đúng
 describe('POST /tinh', function() {   it("should return number divide to calculate", function(done) {    
     request(app)
     .post('/tinh')
@@ -72,6 +87,21 @@ describe('POST /tinh', function() {   it("should return number divide to calcula
     .expect(200)
     .end((err, res) => {
         if(res.body.result == 3){
+            done();
+        }
+    });
+});
+});
+
+//Phép chia sai
+describe('POST /tinh', function() {   it("should return WRONG number divide to calculate", function(done) {    
+    request(app)
+    .post('/tinh')
+    .type('form')
+    .send({num1 : 69, num2 : 3, pheptinh: '/'})
+    .expect(200)
+    .end((err, res) => {
+        if(res.body.result == 100){
             done();
         }
     });
