@@ -18,7 +18,7 @@ describe('GET /', function() {   it("should return home page", function(done) {
     });
 });
 
-//2
+//phep cong dung
 describe('POST /tinh', function() {   it("should return number plus to calculate", function(done) {    
     request(app)
     .post('/tinh')
@@ -27,6 +27,21 @@ describe('POST /tinh', function() {   it("should return number plus to calculate
     .expect(200)
     .end((err, res) => {
         if(res.body.result == 30){
+            done();
+        }
+    });
+});
+});
+
+//phep cong sai
+describe('POST /tinh', function() {   it("should return wrong number plus to calculate", function(done) {    
+    request(app)
+    .post('/tinh')
+    .type('form')
+    .send({num1 : 'aa', num2 : 20, pheptinh: '+'})
+    .expect(200)
+    .end((err, res) => {
+        if(res.body.result != 30){
             done();
         }
     });
