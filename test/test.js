@@ -68,10 +68,10 @@ describe('POST /tinh', function() {   it("should return WRONG number multiply to
     request(app)
     .post('/tinh')
     .type('form')
-    .send({num1 : 5, num2 : 6, pheptinh: '*'})
+    .send({num1 : 'aa', num2 : 6, pheptinh: '*'})
     .expect(200)
     .end((err, res) => {
-        if(res.body.result == 300){
+        if(res.body.result !== 30){
             done();
         }
     });
@@ -98,10 +98,10 @@ describe('POST /tinh', function() {   it("should return WRONG number divide to c
     request(app)
     .post('/tinh')
     .type('form')
-    .send({num1 : 69, num2 : 3, pheptinh: '/'})
+    .send({num1 : 'aa', num2 : 2, pheptinh: '/'})
     .expect(200)
     .end((err, res) => {
-        if(res.body.result == 100){
+        if(res.body.result !== 3){
             done();
         }
     });
@@ -123,7 +123,21 @@ describe('POST /tinh', function() {   it("should return number power to calculat
 });
 });
 
-//7
+describe('POST /tinh', function() {   it("should return wrong number power to calculate", function(done) {    
+    request(app)
+    .post('/tinh')
+    .type('form')
+    .send({num1 : 'aa', num2 : 2, pheptinh: '+'})
+    .expect(200)
+    .end((err, res) => {
+        if(res.body.result !== 100){
+            done();
+        }
+    });
+});
+});
+
+// Phep chia dung
 describe('POST /tinh', function() {   it("should return number square root to calculate", function(done) {    
     request(app)
     .post('/tinh')
@@ -132,6 +146,21 @@ describe('POST /tinh', function() {   it("should return number square root to ca
     .expect(200)
     .end((err, res) => {
         if(res.body.result == 2){
+            done();
+        }
+    });
+});
+});
+
+// Phep chia sai
+describe('POST /tinh', function() {   it("should return number square root to calculate", function(done) {    
+    request(app)
+    .post('/tinh')
+    .type('form')
+    .send({num1 : 'aa', num2 : 2, pheptinh: 'can'})
+    .expect(200)
+    .end((err, res) => {
+        if(res.body.result !== 2){
             done();
         }
     });
