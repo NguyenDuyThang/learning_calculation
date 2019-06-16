@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+script:
+  - "npm install"
+  - "npm test"
+deploy:
+  provider: heroku
+  api_key:
+    secure: bb3f48ca-25b7-492e-b5a4-59489a4b283c
+  app: hw3-learning-calculation
