@@ -87,6 +87,14 @@ app.post("/tinh", (req, res) => {
       result: resu,
       check5: "checked"
     });
+  } else if (req.body.pheptinh === '+'){
+    resu = num1 + num2;
+    res.send({result: resu});
+    res.render('index', {
+      number1: num1, 
+      number2: num2, 
+      result: resu, 
+      check1: "checked"});
   } else if (req.body.pheptinh == "-") {
     resu = num1 - num2;
     res.send({ result: resu });
