@@ -62,7 +62,12 @@ app.post('/tinh', (req, res) =>{
             res.send({result: resu});
             res.render('index', {number1: num1, number2: num2, result: resu, check4: "checked"});
         }
+    } else if(req.body.pheptinh === 'mu') {
+        resu = Math.pow(num1, num2);
+        res.send({result: resu});
+        res.render('index', {number1: num1, number2: num2, result: resu, check3: "checked"});
     }
+
 });
 
 // catch 404 and forward to error handler
