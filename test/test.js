@@ -137,3 +137,18 @@ describe('POST /tinh', function() {   it("should return number square root to ca
     });
 });
 });
+
+// Ràng buộc input
+describe('POST /tinh', function() {   it("input have to be a number", function(done) {
+    request(app)
+        .post('/tinh')
+        .type('form')
+        .send({num1 : 'abc', num2 : 2, pheptinh: '*'})
+        .expect(200)
+        .end((err, res) => {
+            if(res.body.result == -1){
+                done();
+            }
+        });
+});
+});

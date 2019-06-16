@@ -27,7 +27,26 @@ app.get('/tinh', (req, res) => {
 })
 
 app.post('/tinh', (req, res) =>{
-    var resu = 0;
+    if(req.body.num1.length === 0 || isNaN(req.body.num1)) {
+        res.send({result: -1});
+        res.render('index', {
+            number1: req.body.num1,
+            number2: req.body.num2,
+            result: '',
+            check1: "checked",
+            error: "Số thứ nhất không hợp lệ"
+        });
+    } else if(req.body.num2.length === 0 || isNaN(req.body.num2)) {
+        res.send({result: -1});
+        res.render('index', {
+            number1: req.body.num1,
+            number2: req.body.num2,
+            result: '',
+            check1: "checked",
+            error: "Số thứ hai không hợp lệ"
+        });
+    }
+        var resu = 0;
     var num1 = parseFloat(req.body.num1);
     var num2 = parseFloat(req.body.num2);
     if(req.body.pheptinh === '*') {
