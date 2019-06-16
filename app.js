@@ -96,7 +96,27 @@ app.post("/tinh", (req, res) => {
       result: resu,
       check2: "checked"
     });
-  } 
+  } else if (req.body.pheptinh == "can") {
+    if (num2 === 0) {
+      res.send({ result: resu });
+      res.render("index", {
+        number1: num1,
+        number2: num2,
+        result: "",
+        check6: "checked",
+        error: "Không được chia cho 0"
+      });
+    } else {
+      resu = Math.pow(num1, 1 / num2);
+      res.send({ result: resu });
+      res.render("index", {
+        number1: num1,
+        number2: num2,
+        result: resu,
+        check6: "checked"
+      });
+    }
+  }
 });
 
 // catch 404 and forward to error handler
