@@ -36,6 +36,7 @@ app.post("/tinh", (req, res) => {
       check1: "checked",
       error: "Số thứ nhất không hợp lệ"
     });
+    return;
   } else if (req.body.num2.length === 0 || isNaN(req.body.num2)) {
     res.send({ result: -1 });
     res.render("index", {
@@ -45,6 +46,7 @@ app.post("/tinh", (req, res) => {
       check1: "checked",
       error: "Số thứ hai không hợp lệ"
     });
+    return;
   }
   var resu = 0;
   var num1 = parseFloat(req.body.num1);

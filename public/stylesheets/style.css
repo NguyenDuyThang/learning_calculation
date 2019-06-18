@@ -51,6 +51,14 @@ input {
   padding: 0;
 }
 
+.demo {
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 90px;
+  color: coral;
+  text-align: center;
+}
+
 .error {
   background-color: red;
   opacity: 0.4;

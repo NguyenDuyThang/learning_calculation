@@ -24,12 +24,7 @@ describe('POST /tinh', function() {   it("should return number plus to calculate
     .post('/tinh')
     .type('form')
     .send({num1 : 10, num2 : 20, pheptinh: '+'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == 30){
-            done();
-        }
-    });
+    .expect(200, {result: 30}, done);
 });
 });
 
@@ -39,102 +34,67 @@ describe('POST /tinh', function() {   it("should return wrong number plus to cal
     .post('/tinh')
     .type('form')
     .send({num1 : 'aa', num2 : 20, pheptinh: '+'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result != 30){
-            done();
-        }
-    });
+    .expect(200, {result: -1}, done);
 });
 });
 
-//3
+// //3
 describe('POST /tinh', function() {   it("should return number minus to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 10, num2 : 20, pheptinh: '-'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == -10){
-            done();
-        }
-    });
+    .expect(200, {result: -10}, done);
 });
 });
 
-//Phép nhân đúng
+// //Phép nhân đúng
 describe('POST /tinh', function() {   it("should return number multiply to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 5, num2 : 6, pheptinh: '*'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == 30){
-            done();
-        }
-    });
+    .expect(200, {result: 30}, done);
 });
 });
 
-//Phép nhân sai
+// //Phép nhân sai
 describe('POST /tinh', function() {   it("should return WRONG number multiply to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 'aa', num2 : 6, pheptinh: '*'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result !== 30){
-            done();
-        }
-    });
+    .expect(200, {result: -1}, done);
 });
 });
 
-//Phép chia đúng
+// //Phép chia đúng
 describe('POST /tinh', function() {   it("should return number divide to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 6, num2 : 2, pheptinh: '/'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == 3){
-            done();
-        }
-    });
+    .expect(200, {result: 3}, done);
 });
 });
 
-//Phép chia sai
+// //Phép chia sai
 describe('POST /tinh', function() {   it("should return WRONG number divide to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 'aa', num2 : 2, pheptinh: '/'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result !== 3){
-            done();
-        }
-    });
+    .expect(200, {result: -1}, done);
 });
 });
 
-//6
+// //6
 describe('POST /tinh', function() {   it("should return number power to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 10, num2 : 2, pheptinh: 'mu'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == 100){
-            done();
-        }
-    });
+    .expect(200, {result: 100}, done);
 });
 });
 
@@ -143,56 +103,36 @@ describe('POST /tinh', function() {   it("should return wrong number power to ca
     .post('/tinh')
     .type('form')
     .send({num1 : 'aa', num2 : 2, pheptinh: '+'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result !== 100){
-            done();
-        }
-    });
+    .expect(200, {result: -1}, done);
 });
 });
 
-// Phep chia dung
+// // Phep chia dung
 describe('POST /tinh', function() {   it("should return number square root to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 4, num2 : 2, pheptinh: 'can'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result == 2){
-            done();
-        }
-    });
+    .expect(200, {result: 2}, done);
 });
 });
 
-// Phep chia sai
+// // Phep chia sai
 describe('POST /tinh', function() {   it("should return number square root to calculate", function(done) {    
     request(app)
     .post('/tinh')
     .type('form')
     .send({num1 : 'aa', num2 : 2, pheptinh: 'can'})
-    .expect(200)
-    .end((err, res) => {
-        if(res.body.result !== 2){
-            done();
-        }
-    });
+    .expect(200, {result: -1}, done);
 });
 });
 
-// Ràng buộc input
+// // Ràng buộc input
 describe('POST /tinh', function() {   it("input have to be a number", function(done) {
     request(app)
         .post('/tinh')
         .type('form')
         .send({num1 : 'abc', num2 : 2, pheptinh: '*'})
-        .expect(200)
-        .end((err, res) => {
-            if(res.body.result == -1){
-                done();
-            }
-        });
+        .expect(200, {result: -1}, done);
 });
 });
